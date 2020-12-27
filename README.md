@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Docker
 
-Things you may want to cover:
+Docker container build on top of Evil Martians ideas: https://evilmartians.com/chronicles/ruby-on-whales-docker-for-ruby-rails-development
 
-* Ruby version
+Suite includes:
 
-* System dependencies
+* Rails 6.1
+* Ruby 3.0.0-rc1
+* PostgreSQL
+* Sidekiq + Redis
+# Setup
 
-* Configuration
+```bash
+docker-compose build
+docker-compose run runner bundle install 
+docker-compose run runner yarn install
+docker-compose run runner bundle exec rake db:create db:migrate db:seed
+docker-compose up -d
+```
+Then just open in web browser:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```http://localhost:3000```
