@@ -8,11 +8,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new permitted_params.merge(user: current_user)
-    if @post.save
-      redirect_to action: :index
-    else
+    @post = CreatePost.call(current_user, permitted_params)
+    if @post.errors.any?
       render :new
+    else
+      redirect_to action: :index
     end
   end
 
