@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>History Items</h1>
+<h1>History</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Type</th>
       <th>User</th>
       <th>Target type</th>
       <th>Target id</th>
+      <th>Date, time</th>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
         <td><%= history_item.user.email %></td>
         <td><%= history_item.target_type %></td>
         <td><%= history_item.target_id %></td>
+        <td><%= history_item.created_at %></td>
       </tr>
     <% end %>
   </tbody>
