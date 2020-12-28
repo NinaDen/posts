@@ -3,5 +3,8 @@ inherit_from: .rubocop_todo.yml
 Documentation:
   Enabled: false
 
+Metrics/BlockLength:
+  Max: 50
+
 Rails/NotNullColumn:
   Enabled: false
