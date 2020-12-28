@@ -22,3 +22,8 @@ docker-compose up -d
 Then just open in web browser:
 
 ```http://localhost:3000```
+
+# Mail settings
+
+```cp .env.example .env```
+and fill .env file with your smtp settings

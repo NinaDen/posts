@@ -13,6 +13,8 @@ services:
         BUNDLER_VERSION: '2.2'
     tmpfs:
       - /tmp
+    env_file:
+      - .env
 
   backend: &backend
     <<: *app
