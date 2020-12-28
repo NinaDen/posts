@@ -33,6 +33,11 @@ gem 'rubocop-rails', require: false
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 
+# gem 'bootstrap'
+gem 'bootstrap_form'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
