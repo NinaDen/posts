@@ -34,6 +34,7 @@ class CreatePost
   end
 
   def notify_user
+    CreatePostMailer.create_post_mail(post).deliver_now
   end
 
   private

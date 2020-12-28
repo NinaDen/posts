@@ -10,6 +10,7 @@ RSpec.describe CreatePost, type: :service do
       .and change {
              HistoryItem.count
            }.from(0).to(1)
+      .and(change { ActionMailer::Base.deliveries.count }.by(1))
   end
 
   it "with invalid attributes doesn't change Post and HistoryItem counts" do
@@ -17,8 +18,7 @@ RSpec.describe CreatePost, type: :service do
     expect { CreatePost.call(user, { title: "" }) }.to(not_change do
       Post.count
     end
-      .and(not_change do
-             HistoryItem.count
-           end))
+      .and(not_change { HistoryItem.count })
+      .and(not_change { ActionMailer::Base.deliveries.count }))
   end
 end
