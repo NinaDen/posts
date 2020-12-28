@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_27_151409) do
+ActiveRecord::Schema.define(version: 2020_12_27_171935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "history_items", force: :cascade do |t|
+    t.string "history_type", null: false
+    t.string "target_type", null: false
+    t.integer "target_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_history_items_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -36,5 +46,6 @@ ActiveRecord::Schema.define(version: 2020_12_27_151409) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "history_items", "users"
   add_foreign_key "posts", "users"
 end

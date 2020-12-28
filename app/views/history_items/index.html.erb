@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>History Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>User</th>
+      <th>Target type</th>
+      <th>Target id</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @history_items.each do |history_item| %>
+      <tr>
+        <td><%= history_item.history_type %></td>
+        <td><%= history_item.user.email %></td>
+        <td><%= history_item.target_type %></td>
+        <td><%= history_item.target_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
