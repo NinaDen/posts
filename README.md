@@ -43,3 +43,18 @@ Mails are sent through Sidekiq, the queue of jobs can be viewed on ```http://loc
 Сode analyzer Rubocop was used, you can see it report 
 
 ```docker-compose run runner rubocop --require rubocop-rails```
+
+# Screenshots
+
+Log in page
+
+ ![](screenshots/login.png)
+
+Posts page
+ ![](screenshots/posts.png)
+
+New post page
+ ![](screenshots/new_post.png)
+
+History page
+ ![](screenshots/history.png)
