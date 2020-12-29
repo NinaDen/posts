@@ -6,11 +6,11 @@ RSpec.describe "Posts", type: :request do
     login_as user
   end
 
+  let(:valid_params) { { title: "title" } }
+  let(:invalid_params) { { title: "" } }
+
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do
-      10.times do
-        create :post
-      end
       get "/posts"
       expect(response).to render_template(:index)
       expect(response).to be_successful
@@ -28,22 +28,26 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe 'POST #create' do
-    it 'with valid params' do
-      expect do
-        post "/posts#create", params: { post: { title: "title" } }
-      end.to change {
-        Post.count
-      }.from(0).to(1)
-      expect(response).to redirect_to(action: :index)
+    context 'with valid params' do
+      it "creates new post and responds with redirect to index" do
+        expect do
+          post "/posts#create", params: { post: valid_params }
+        end.to change {
+          Post.count
+        }.from(0).to(1)
+        expect(response).to redirect_to(action: :index)
+      end
     end
 
-    it "without title" do
-      expect do
-        post "/posts#create", params: { post: { title: "" } }
-      end.to_not(change do
-        Post.count
-      end)
-      expect(response).to render_template(:new)
+    context "with invalid params" do
+      it "doesn't create new post and respond with template :new" do
+        expect do
+          post "/posts#create", params: { post: invalid_params }
+        end.to_not(change do
+          Post.count
+        end)
+        expect(response).to render_template(:new)
+      end
     end
   end
 end

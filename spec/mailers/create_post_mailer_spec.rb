@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe CreatePostMailer, type: :mailer do
   let(:post) { create :post }
-  let(:mail) { CreatePostMailer.create_post_mail(post) }
+  let(:mail) { described_class.create_post_mail(post) }
   it "renders the headers" do
     expect(mail.subject).to eq("Create post mail")
     expect(mail.to).to eq([post.user.email])

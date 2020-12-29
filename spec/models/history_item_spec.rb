@@ -1,26 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe HistoryItem, type: :model do
-  it "is valid with valid attributes" do
-    post = create :post
-    history_item = HistoryItem.new(user: post.user, target: post, history_type: "create")
-    expect(history_item).to be_valid
+  let(:post) { create :post }
+  let(:user) { create :user }
+
+  context "with valid attributes" do
+    it "is valid" do
+      history_item = described_class.new(user: post.user, target: post, history_type: "create")
+      expect(history_item).to be_valid
+    end
   end
-  it "is not valid without a user" do
-    user = create :user
-    post = Post.create(user: user, title: 'title')
-    history_item = HistoryItem.new(target: post, history_type: "create")
-    expect(history_item).to_not be_valid
+
+  context "without a user" do
+    it "is not valid" do
+      history_item = described_class.new(target: post, history_type: "create")
+      expect(history_item).to_not be_valid
+    end
   end
-  it "is not valid without a history type" do
-    user = create :user
-    post = Post.create(user: user, title: 'title')
-    history_item = HistoryItem.new(user: user, target: post)
-    expect(history_item).to_not be_valid
+
+  context "without a history type" do
+    it "is not valid" do
+      history_item = described_class.new(user: post.user, target: post)
+      expect(history_item).to_not be_valid
+    end
   end
-  it "is not valid without a target" do
-    user = create :user
-    history_item = HistoryItem.new(user: user, history_type: "create")
-    expect(history_item).to_not be_valid
+
+  context "without a target" do
+    it "is not valid" do
+      history_item = described_class.new(user: user, history_type: "create")
+      expect(history_item).to_not be_valid
+    end
   end
 end
