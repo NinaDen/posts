@@ -32,8 +32,14 @@ File .env contains smtp settings of email for testing. You can fill in the file 
 To run all rspec test do
 ```docker-compose run runner rspec```
 
-Open ./coverage/index.html to see coverage results report (224 / 224 LOC (100.0%) covered)
+Open ./coverage/index.html to see coverage results report (100.0% covered at 1.5 hits/line).
 
 # Sidekiq
 
 Mails are sent through Sidekiq, the queue of jobs can be viewed on ```http://localhost:3000/sidekiq```
+
+# RuboСop
+
+Сode analyzer Rubocop was used, you can see it report 
+
+```docker-compose run runner rubocop --require rubocop-rails```
