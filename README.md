@@ -10,16 +10,10 @@ Suite includes:
 * Ruby 3.0.0-rc1
 * PostgreSQL
 * Sidekiq + Redis
-# Mail settings
-
-Before building containers do
-
-```cp .env.example .env```
-
-Fill .env file with your smtp settings (important!)
 # Setup
 
 ```bash
+cp .env.example .env
 docker-compose build
 docker-compose run runner bundle install 
 docker-compose run runner yarn install
@@ -29,6 +23,10 @@ docker-compose up -d
 Then just open in web browser:
 
 ```http://localhost:3000```
+
+# Mail settings
+
+File .env contains smtp settings of email for testing. You can fill in the file with your smtp settings
 
 # Testing
 To run all rspec test do
